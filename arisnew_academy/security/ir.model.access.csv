@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_arisnew_academy_arisnew_academy,arisnew_academy.arisnew_academy,model_arisnew_academy_arisnew_academy,,1,0,0,0
