@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+        <menuitem id="arisnew_academy_menu_root" name="Academy" sequence="20"/>
+
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="arisnew_academy_master_menu_categ" 
+            name="Data Master" 
+            parent="arisnew_academy_menu_root" 
+            sequence="20"/>
+    </data>
+</odoo>
