@@ -1,6 +1,63 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
 	<data>
+		<!-- arisnew.course tree view -->
+		<record id="arisnew_course_view_tree" model="ir.ui.view">
+			<field name="name">arisnew.course.view.tree</field>
+			<field name="model">arisnew.course</field>
+			<field name="arch" type="xml">
+				<tree>
+					<!-- Add your fields here -->
+					<field name="name"/>
+					<field name="description"/>
+					<field name="active"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- arisnew.course form view -->
+		<record id="arisnew_course_view_form" model="ir.ui.view">
+			<field name="name">arisnew.course.view.form</field>
+			<field name="model">arisnew.course</field>
+			<field name="arch" type="xml">
+				<form string="">
+					<sheet>
+						<group>
+							<!-- Add your fields here -->
+							<group>
+								<field name="name"/>
+							</group>
+							<group>
+								<field name="active"/>
+							</group>
+						</group>
+
+						<notebook>
+							<page string="Description" name="description">
+								<field name="description"/>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- arisnew.course search view -->
+		<record id="arisnew_course_view_search" model="ir.ui.view">
+			<field name="name">arisnew.course.view.search</field>
+			<field name="model">arisnew.course</field>
+			<field name="arch" type="xml">
+				<search string="Search Course">
+					<!-- Add your fields here -->
+					<field name="name"/>
+					<field name="description"/>
+
+					<filter name="php" string="PHP" domain="[('name','ilike','php')]"/>
+				</search>
+			</field>
+		</record>
+
+
 		<!-- arisnew.course action window -->
 		<record id="arisnew_course_action" model="ir.actions.act_window">
 			<field name="name">Course</field>
