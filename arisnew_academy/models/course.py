@@ -21,7 +21,8 @@ class Course(models.Model):
         string='Active', 
         default=True
     )
-    
-    
 
-
+    category_id = fields.Many2one(
+        comodel_name='arisnew.course.category',
+        string='Category',
+    )

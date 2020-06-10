@@ -1,25 +1,24 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
 	<data>
-		<!-- arisnew.course tree view -->
-		<record id="arisnew_course_view_tree" model="ir.ui.view">
-			<field name="name">arisnew.course.view.tree</field>
-			<field name="model">arisnew.course</field>
+		<!-- arisnew.course.category tree view -->
+		<record id="arisnew_course_category_view_tree" model="ir.ui.view">
+			<field name="name">arisnew.course.category.view.tree</field>
+			<field name="model">arisnew.course.category</field>
 			<field name="arch" type="xml">
 				<tree>
 					<!-- Add your fields here -->
 					<field name="name"/>
-					<field name="category_id"/>
 					<field name="description"/>
 					<field name="active"/>
 				</tree>
 			</field>
 		</record>
 
-		<!-- arisnew.course form view -->
-		<record id="arisnew_course_view_form" model="ir.ui.view">
-			<field name="name">arisnew.course.view.form</field>
-			<field name="model">arisnew.course</field>
+		<!-- arisnew.course.category form view -->
+		<record id="arisnew_course_category_view_form" model="ir.ui.view">
+			<field name="name">arisnew.course.category.view.form</field>
+			<field name="model">arisnew.course.category</field>
 			<field name="arch" type="xml">
 				<form string="">
 					<sheet>
@@ -27,7 +26,6 @@
 							<!-- Add your fields here -->
 							<group>
 								<field name="name"/>
-								<field name="category_id"/>
 							</group>
 							<group>
 								<field name="active"/>
@@ -38,40 +36,34 @@
 							<page string="Description" name="description">
 								<field name="description"/>
 							</page>
+							<page name="Course" string="Course">
+								<field name="course_ids"/>
+							</page>
 						</notebook>
 					</sheet>
 				</form>
 			</field>
 		</record>
 
-		<!-- arisnew.course search view -->
-		<record id="arisnew_course_view_search" model="ir.ui.view">
-			<field name="name">arisnew.course.view.search</field>
-			<field name="model">arisnew.course</field>
+		<!-- arisnew.course.category search view -->
+		<record id="arisnew_course_category_view_search" model="ir.ui.view">
+			<field name="name">arisnew.course.category.view.search</field>
+			<field name="model">arisnew.course.category</field>
 			<field name="arch" type="xml">
-				<search string="Search Course">
+				<search string="Search Course Category">
 					<!-- Add your fields here -->
 					<field name="name"/>
 					<field name="description"/>
-					<field name="category_id"/>
-
-					<filter name="php" string="PHP" domain="[('name','ilike','php')]"/>
-
-					<group string="Group By">
-						<filter name="group_by_category" 
-							string="Category"
-							context="{'group_by': 'category_id'}"/>
-					</group>	
 				</search>
 			</field>
 		</record>
 
 
-		<!-- arisnew.course action window -->
-		<record id="arisnew_course_action" model="ir.actions.act_window">
-			<field name="name">Course</field>
+		<!-- arisnew.course.category action window -->
+		<record id="arisnew_course_category_action" model="ir.actions.act_window">
+			<field name="name">Course Categories</field>
 			<field name="type">ir.actions.act_window</field>
-			<field name="res_model">arisnew.course</field>
+			<field name="res_model">arisnew.course.category</field>
 			<field name="view_mode">tree,form</field>
 			<field name="view_type">form</field>
 			<field name="help" type="html">
@@ -85,10 +77,10 @@
 		</record>
 
 		<!-- This Menu Item must have a parent and an action -->
-		<menuitem id="arisnew_course_menu_act" 
-			name="Course" 
+		<menuitem id="arisnew_course_category_menu_act" 
+			name="Course Categories" 
 			parent="arisnew_academy_master_menu_categ" 
-			action="arisnew_course_action" 
-			sequence="10"/>
+			action="arisnew_course_category_action" 
+			sequence="20"/>
 	</data>
 </odoo>
