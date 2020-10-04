@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_arisnew_academy_course,access_arisnew_academy_course,model_arisnew_course,,1,1,1,1
 access_arisnew_academy_course_category,access_arisnew_academy_course_category,model_arisnew_course_category,,1,1,1,1
+access_arisnew_academy_session,access_arisnew_academy_session,model_arisnew_session,,1,1,1,1
+access_arisnew_academy_attendee,access_arisnew_academy_attendee,model_arisnew_attendee,,1,1,1,1
