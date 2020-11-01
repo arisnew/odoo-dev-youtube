@@ -30,8 +30,40 @@ class Session(models.Model):
         inverse_name='session_id',
         string='Attendee'
     )
+
+    taken_seats = fields.Float(
+        compute='_compute_taken_seats', 
+        string='Taken Seats',
+        store=True,
+    )
     
+    @api.depends('min_attendee', 'attendee_ids')
+    def _compute_taken_seats(self):
+        for record in self:
+            if not record.min_attendee:
+                record.taken_seats = 0.0
+            else:
+                record.taken_seats = 100.0 * len(record.attendee_ids) / record.min_attendee
     
+    @api.onchange('min_attendee', 'attendee_ids')
+    def _onchange_attendee(self):
+        if self.min_attendee < 0:
+            return {
+                'warning': {
+                    'title': "Salah Data!",
+                    'message': "Min Attendee tidak boleh kurang dari 0",
+                },
+            }
+        if self.min_attendee < len(self.attendee_ids):
+            return {
+                'warning': {
+                    'title': "Too many attendees",
+                    'message': "Increase min attendee or remove excess attendees",
+                },
+            }
+    
+
+
 class Attendee(models.Model):
     _name = 'arisnew.attendee'
     _description = 'Attendee of course session....'
