@@ -3,26 +3,31 @@ from odoo import api, fields, models, exceptions
 
 class Session(models.Model):
     _name = 'arisnew.session'
+    _inherit = 'mail.thread'
     _description = 'Data Course Session..'
 
-    name = fields.Char(string='Name')
+    name = fields.Char(string='Name', track_visibility='onchange')
     course_id = fields.Many2one(
         comodel_name='arisnew.course', 
-        string='Course'
+        string='Course',
+        track_visibility='onchange'
     )
     instructor_id = fields.Many2one(
         comodel_name='res.partner', 
         string='Instructor',
         domain="[('is_instructor', '=', True)]",
+        track_visibility='onchange'
     )
 
     session_date = fields.Datetime(
         string='Session Date', 
-        default=fields.Datetime.now()
+        default=fields.Datetime.now(),
+        track_visibility='onchange'
     )
     
     min_attendee = fields.Integer(
-        string='Minimum Attendee'
+        string='Minimum Attendee',
+        track_visibility='onchange'
     )
 
     attendee_ids = fields.One2many(
@@ -36,6 +41,40 @@ class Session(models.Model):
         string='Taken Seats',
         store=True,
     )
+
+    state = fields.Selection(string='State', selection=[
+        ('draft', 'Draft'),
+        ('confirm', 'Confirm'),
+        ('done', 'Done'),
+        ('cancel', 'Cancel'),
+    ], readonly=True, default='draft', required=True, track_visibility='onchange')
+
+    def action_confirm(self):
+        # validasi
+        # manipulasi
+        self.write({'state': 'confirm'})
+
+    def action_done(self):
+        # validasi
+        # manipulasi
+        self.write({'state': 'done'})
+
+    def action_cancel(self):
+        # validasi
+        # manipulasi
+        self.write({'state': 'cancel'})
+
+    def action_reset(self):
+        # validasi
+        # manipulasi
+        self.write({'state': 'draft'})
+
+    @api.multi
+    def unlink(self):
+        if self.filtered(lambda line: line.state != 'draft'):
+            raise exceptions.UserError('Tidak bisa hapus data selain Draft')
+        return super(Session, self).unlink()
+    
     
     @api.depends('min_attendee', 'attendee_ids')
     def _compute_taken_seats(self):

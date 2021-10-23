@@ -1,2 +1,4 @@
 *.pyc
 __pychache__
+.vscode/settings.json
+.DS_Store

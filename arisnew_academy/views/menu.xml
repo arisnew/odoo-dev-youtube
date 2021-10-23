@@ -2,7 +2,8 @@
 <odoo>
     <data>
         <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
-        <menuitem id="arisnew_academy_menu_root" name="Academy" sequence="20"/>
+        <menuitem id="arisnew_academy_menu_root" name="Academy" sequence="20"
+            web_icon="arisnew_academy,static/description/icon.png"/>
 
         <!-- This Menu Item Must have a parent -->
         <menuitem id="arisnew_academy_master_menu_categ" 
